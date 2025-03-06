@@ -85,7 +85,7 @@ pub fn cli() -> Command {
                             info!("Not a directory: {:?}, filtering out", path);
                             return false;
                         } */
-                       info!("test\n");
+                       info!("{:?} and I return false\n", path);
                        return false;
                     }),
                 )),
