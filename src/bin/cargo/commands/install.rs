@@ -15,6 +15,7 @@ use semver::VersionReq;
 use cargo_util::paths;
 use std::ffi::OsStr;
 use std::path::Path;
+use tracing::{trace, debug, info, warn, error};
 
 pub fn cli() -> Command {
     subcommand("install")
@@ -72,10 +73,8 @@ pub fn cli() -> Command {
                 .add(clap_complete::engine::ArgValueCompleter::new(
                     clap_complete::engine::PathCompleter::any().filter(|path: &Path| {
                         if path.is_dir() {
+                            debug!("path");
                             return path.join("Cargo.toml").exists();
-                        }
-                        if path.file_name() == Some(OsStr::new("Cargo.toml")) {
-                            return true;
                         }
                         if is_embedded(path) {
                             return true;
