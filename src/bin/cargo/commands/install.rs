@@ -72,14 +72,21 @@ pub fn cli() -> Command {
                 .conflicts_with_all(&["git", "index", "registry"])
                 .add(clap_complete::engine::ArgValueCompleter::new(
                     clap_complete::engine::PathCompleter::any().filter(|path: &Path| {
+                        /* info!("Tab completion filter called for path: {:?}", path);
+                        
                         if path.is_dir() {
-                            debug!("path");
-                            return path.join("Cargo.toml").exists();
-                        }
-                        if is_embedded(path) {
-                            return true;
-                        }
-                        false
+                            let cargo_toml_path = path.join("Cargo.toml");
+                            let has_cargo_toml = cargo_toml_path.exists();
+                            
+                            info!("Directory check: {:?}, Cargo.toml exists: {}", path, has_cargo_toml);
+                            
+                            return has_cargo_toml;
+                        } else {
+                            info!("Not a directory: {:?}, filtering out", path);
+                            return false;
+                        } */
+                       info!("test\n");
+                       return false;
                     }),
                 )),
         )
